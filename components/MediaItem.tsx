@@ -5,6 +5,7 @@ import { FC, useCallback } from "react";
 import { Song } from "@/types";
 import useLoadImage from "@/hooks/useLoadImage";
 import Image from "next/image";
+import usePlayer from "@/hooks/usePlayer";
 
 interface MediaItemProps {
   data: Song;
@@ -13,11 +14,14 @@ interface MediaItemProps {
 
 const MediaItem: FC<MediaItemProps> = ({ data, onClick }) => {
   const imagePath = useLoadImage(data);
+  const player = usePlayer();
 
   const handleClick = useCallback(() => {
     if (onClick) {
       onClick(data.id);
     }
+
+    return player.setId(data.id);
   }, [onClick]);
 
   return (

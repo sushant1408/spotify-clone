@@ -53,7 +53,7 @@ const AccountContent = () => {
           </p>
           <Button
             className="w-[300px]"
-            disabled={isLoading}
+            disabled={loading || isLoading}
             onClick={redirectToCustomerPortal}
           >
             Open customer portal
