@@ -23,6 +23,7 @@ export async function POST(request: Request) {
       uuid: user?.id || "",
     });
 
+    // @ts-ignore
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
       billing_address_collection: "required",
