@@ -3,20 +3,29 @@ import usePlayer from "./usePlayer";
 import useAuthModal from "./useAuthModal";
 import { useUser } from "./useUser";
 import { useCallback } from "react";
+import useSubscribeModal from "./useSubscribeModal";
 
 const useOnPlay = (songs: Song[]) => {
   const player = usePlayer();
   const { onOpen: onAuthModalOpen } = useAuthModal();
-  const { user } = useUser();
+  const { onOpen: onSubscribeModalOpen } = useSubscribeModal();
+  const { user, subscription } = useUser();
 
-  const onPlay = useCallback((id: string) => {
-    if (!user) {
-      return onAuthModalOpen();
-    }
+  const onPlay = useCallback(
+    (id: string) => {
+      if (!user) {
+        return onAuthModalOpen();
+      }
 
-    player.setId(id);
-    player.setIds(songs.map((song) => song.id));
-  }, [user, onAuthModalOpen, player]);
+      if (!subscription) {
+        return onSubscribeModalOpen();
+      }
+
+      player.setId(id);
+      player.setIds(songs.map((song) => song.id));
+    },
+    [user, onAuthModalOpen, player, subscription, onSubscribeModalOpen]
+  );
 
   return onPlay;
 };

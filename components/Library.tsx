@@ -10,15 +10,17 @@ import useUploadModal from "@/hooks/useUploadModal";
 import { Song } from "@/types";
 import MediaItem from "./MediaItem";
 import useOnPlay from "@/hooks/useOnPlay";
+import useSubscribeModal from "@/hooks/useSubscribeModal";
 
 interface LibraryProps {
   songs: Song[];
 }
 
 const Library: FC<LibraryProps> = ({ songs }) => {
+  const { onOpen: onSubscribeModalOpen } = useSubscribeModal();
   const { onOpen: onAuthModalOpen } = useAuthModal();
   const { onOpen: onUploadModalOpen } = useUploadModal();
-  const { user } = useUser();
+  const { user, subscription } = useUser();
 
   const onPlay = useOnPlay(songs);
 
@@ -27,8 +29,18 @@ const Library: FC<LibraryProps> = ({ songs }) => {
       return onAuthModalOpen();
     }
 
+    if (!subscription) {
+      return onSubscribeModalOpen();
+    }
+
     return onUploadModalOpen();
-  }, [user, onAuthModalOpen, onUploadModalOpen]);
+  }, [
+    user,
+    onAuthModalOpen,
+    onUploadModalOpen,
+    subscription,
+    onSubscribeModalOpen,
+  ]);
 
   return (
     <div className="flex flex-col">
