@@ -34,7 +34,7 @@ const AccountContent = () => {
     } finally {
       setLoading(false);
     }
-  }, [setLoading, postData]);
+  }, [setLoading]);
 
   return (
     <div className="mb-7 px-6">

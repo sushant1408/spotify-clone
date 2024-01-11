@@ -16,7 +16,7 @@ const ListItem: FC<ListItemProps> = ({ href, image, name }) => {
 
   const onClick = useCallback(() => {
     router.push(href);
-  }, [router]);
+  }, [router, href]);
 
   return (
     <button

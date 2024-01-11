@@ -22,7 +22,7 @@ const MediaItem: FC<MediaItemProps> = ({ data, onClick }) => {
     }
 
     return player.setId(data.id);
-  }, [onClick]);
+  }, [onClick, player, data.id]);
 
   return (
     <div

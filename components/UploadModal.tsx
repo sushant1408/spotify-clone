@@ -104,7 +104,7 @@ const UploadModal = () => {
         setIsLoading(false);
       }
     },
-    [setIsLoading, uniqid, user, supabaseClient, router, reset, onClose]
+    [setIsLoading, user, supabaseClient, router, reset, onClose]
   );
 
   return (

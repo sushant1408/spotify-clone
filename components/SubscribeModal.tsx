@@ -57,7 +57,7 @@ const SubscribeModal: FC<SubscribeModalProps> = ({ products }) => {
         setPriceIdLoading(undefined);
       }
     },
-    [setPriceIdLoading, user, subscription, postData, getStripe]
+    [setPriceIdLoading, user, subscription]
   );
 
   const onChange = useCallback(

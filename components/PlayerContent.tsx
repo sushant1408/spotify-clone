@@ -53,7 +53,7 @@ const PlayerContent: FC<PlayerContentProps> = ({ song, songUrl }) => {
     }
 
     player.setId(prevSong);
-  }, []);
+  }, [player]);
 
   const [play, { pause, sound }] = useSound(songUrl, {
     volume: volume,

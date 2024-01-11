@@ -38,7 +38,7 @@ const Header: FC<HeaderProps> = ({ children, className }) => {
     } else {
       toast.success("logged out!");
     }
-  }, [supabaseClient, router]);
+  }, [supabaseClient, router, player]);
 
   return (
     <div

@@ -41,6 +41,7 @@ const LikeButton: FC<LikeButtonProps> = ({ songId }) => {
 
   useEffect(() => {
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [songId, supabaseClient, user?.id]);
 
   const Icon = isLiked ? AiFillHeart : AiOutlineHeart;
@@ -77,7 +78,15 @@ const LikeButton: FC<LikeButtonProps> = ({ songId }) => {
     }
 
     router.refresh();
-  }, [user, onAuthModalOpen, isLiked, setIsLiked, supabaseClient, router]);
+  }, [
+    user,
+    onAuthModalOpen,
+    isLiked,
+    setIsLiked,
+    supabaseClient,
+    router,
+    songId,
+  ]);
 
   return (
     <button
